@@ -22,7 +22,7 @@
     <string name="news_info">Aktuell: Neue Funktion zur Geräteerkennung in Arbeit.</string>
 
     <string name="settings">Einstellungen</string>
-    <string name="dark_mode">Dark Mode</string>
+    <string name="dark_mode">Dunkler Modus</string>
     <string name="language">Sprache</string>
     <string name="language_german">Deutsch</string>
     <string name="language_english">Englisch</string>
@@ -38,4 +38,33 @@
     <string name="additional_info_line3">Immer aktuelle Fehlercodes und Tipps, speziell für Windows-PCs.</string>
     <string name="additional_info_line4">FixPilot funktioniert nur auf Android und hilft bei PC-Problemen.</string>
     <string name="additional_info_line5">Starte jetzt und werde dein eigener Technikprofi.</string>
+
+    <!-- res/values/strings.xml -->
+    <string name="error_database_title">Fehlerdatenbank</string>
+    <string name="category_label">Kategorie</string>
+    <string name="system_label">Betriebssystem</string>
+    <string name="search_label">Fehlercode eingeben</string>
+    <string name="search_button">Suchen</string>
+    <string name="description_label">Beschreibung:</string>
+    <string name="solution_label">Lösung:</string>
+    <string name="no_entry_found">Kein Eintrag gefunden.</string>
+    <string name="warning">Warnung</string>
+
+
+    <!-- res/values/strings.xml -->
+    <string name="feedback_title">Feedback geben</string>
+    <string name="feedback_thanks">Danke für dein Feedback!</string>
+    <string name="feedback_welcome">Wir freuen uns über dein Feedback!</string>
+    <string name="feedback_category_label">Kategorie auswählen:</string>
+    <string name="feedback_category_general">Allgemein</string>
+    <string name="feedback_category_error_code">Fehlercode melden</string>
+    <string name="feedback_error_code_label">Fehlercode</string>
+    <string name="feedback_error_context_label">Fehler in:</string>
+    <string name="feedback_error_context_os">Betriebssystem</string>
+    <string name="feedback_error_context_app">App</string>
+    <string name="feedback_app_name_label">App-Name eingeben</string>
+    <string name="feedback_text_label">Dein Feedback</string>
+    <string name="feedback_send_button">Feedback absenden</string>
+    <string name="back_button">Zurück</string>
+
 </resources>

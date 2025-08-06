@@ -44,10 +44,10 @@ fun EinstellungenScreen(navController: NavHostController, viewModel: AppViewMode
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Einstellungen") },
+                title = { Text(stringResource(R.string.settings)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Zurück")
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.settings))
                     }
                 }
             )
@@ -60,7 +60,7 @@ fun EinstellungenScreen(navController: NavHostController, viewModel: AppViewMode
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            Text("Darstellung", style = MaterialTheme.typography.titleMedium)
+            Text(stringResource(R.string.dark_mode), style = MaterialTheme.typography.titleMedium)
 
             // Dark Mode Umschalter
             Row(
@@ -68,7 +68,7 @@ fun EinstellungenScreen(navController: NavHostController, viewModel: AppViewMode
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text("Dark Mode")
+                Text(stringResource(R.string.dark_mode))
                 Switch(
                     checked = darkMode,
                     onCheckedChange = { viewModel.setDarkModeEnabled(it) }
@@ -77,7 +77,7 @@ fun EinstellungenScreen(navController: NavHostController, viewModel: AppViewMode
 
             Divider()
 
-            Text("Sprache", style = MaterialTheme.typography.titleMedium)
+            Text(stringResource(R.string.language), style = MaterialTheme.typography.titleMedium)
 
             // Sprache auswählen
             Box(modifier = Modifier.fillMaxWidth()) {
@@ -120,7 +120,7 @@ fun EinstellungenScreen(navController: NavHostController, viewModel: AppViewMode
 
             Divider()
 
-            Text("Rechtliches", style = MaterialTheme.typography.titleMedium)
+            Text(stringResource(R.string.privacy_imprint), style = MaterialTheme.typography.titleMedium)
 
             OutlinedButton(
                 onClick = { /* TODO: Datenschutz anzeigen */ },
@@ -129,7 +129,7 @@ fun EinstellungenScreen(navController: NavHostController, viewModel: AppViewMode
             ) {
                 Icon(Icons.Default.PrivacyTip, contentDescription = null)
                 Spacer(Modifier.width(8.dp))
-                Text("Datenschutz & Impressum")
+                Text(stringResource(R.string.privacy_imprint))
             }
 
             OutlinedButton(
@@ -139,7 +139,7 @@ fun EinstellungenScreen(navController: NavHostController, viewModel: AppViewMode
             ) {
                 Icon(Icons.Default.Feedback, contentDescription = null)
                 Spacer(Modifier.width(8.dp))
-                Text("Feedback senden")
+                Text(stringResource(R.string.feedback_button))
             }
         }
     }
