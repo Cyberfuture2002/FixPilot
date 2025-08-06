@@ -7,8 +7,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.fixpilot.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -22,9 +24,11 @@ fun FeedbackScreen(navController: NavHostController) {
     val snackbarHostState = remember { SnackbarHostState() }
     var showThanksSnackbar by remember { mutableStateOf(false) }
 
+    val thanksMessage = stringResource(R.string.feedback_thanks)
+
     if (showThanksSnackbar) {
         LaunchedEffect(Unit) {
-            snackbarHostState.showSnackbar("Danke für dein Feedback!")
+            snackbarHostState.showSnackbar(thanksMessage)
             showThanksSnackbar = false
         }
     }
@@ -32,10 +36,10 @@ fun FeedbackScreen(navController: NavHostController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Feedback geben") },
+                title = { Text(stringResource(R.string.feedback_title)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Zurück")
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.back_button))
                     }
                 }
             )
@@ -50,25 +54,25 @@ fun FeedbackScreen(navController: NavHostController) {
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             Text(
-                "Wir freuen uns über dein Feedback!",
+                stringResource(R.string.feedback_welcome),
                 style = MaterialTheme.typography.headlineSmall
             )
 
             // Kategorie
             Column {
-                Text("Kategorie auswählen:", style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.feedback_category_label), style = MaterialTheme.typography.titleMedium)
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     RadioButton(
                         selected = category == "allgemein",
                         onClick = { category = "allgemein" }
                     )
-                    Text("Allgemein")
+                    Text(stringResource(R.string.feedback_category_general))
                     Spacer(Modifier.width(16.dp))
                     RadioButton(
                         selected = category == "fehlercode",
                         onClick = { category = "fehlercode" }
                     )
-                    Text("Fehlercode melden")
+                    Text(stringResource(R.string.feedback_category_error_code))
                 }
             }
 
@@ -78,30 +82,30 @@ fun FeedbackScreen(navController: NavHostController) {
                     OutlinedTextField(
                         value = errorCode,
                         onValueChange = { errorCode = it },
-                        label = { Text("Fehlercode") },
+                        label = { Text(stringResource(R.string.feedback_error_code_label)) },
                         modifier = Modifier.fillMaxWidth()
                     )
 
-                    Text("Fehler in:", style = MaterialTheme.typography.titleMedium)
+                    Text(stringResource(R.string.feedback_error_context_label), style = MaterialTheme.typography.titleMedium)
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         RadioButton(
                             selected = errorContext == "betriebssystem",
                             onClick = { errorContext = "betriebssystem" }
                         )
-                        Text("Betriebssystem")
+                        Text(stringResource(R.string.feedback_error_context_os))
                         Spacer(Modifier.width(16.dp))
                         RadioButton(
                             selected = errorContext == "app",
                             onClick = { errorContext = "app" }
                         )
-                        Text("App")
+                        Text(stringResource(R.string.feedback_error_context_app))
                     }
 
                     if (errorContext == "app") {
                         OutlinedTextField(
                             value = appName,
                             onValueChange = { appName = it },
-                            label = { Text("App-Name eingeben") },
+                            label = { Text(stringResource(R.string.feedback_app_name_label)) },
                             modifier = Modifier.fillMaxWidth()
                         )
                     }
@@ -112,7 +116,7 @@ fun FeedbackScreen(navController: NavHostController) {
             OutlinedTextField(
                 value = feedbackText,
                 onValueChange = { feedbackText = it },
-                label = { Text("Dein Feedback") },
+                label = { Text(stringResource(R.string.feedback_text_label)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(150.dp),
@@ -132,7 +136,7 @@ fun FeedbackScreen(navController: NavHostController) {
                 enabled = feedbackText.isNotBlank() || (category == "fehlercode" && errorCode.isNotBlank()),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Feedback absenden")
+                Text(stringResource(R.string.feedback_send_button))
             }
         }
     }

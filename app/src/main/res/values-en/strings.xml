@@ -43,7 +43,6 @@
     <string name="category_label">Category</string>
     <string name="system_label">Operating System</string>
     <string name="search_label">Enter error code</string>
-    <string name="search_button">Search</string>
     <string name="description_label">Description:</string>
     <string name="solution_label">Solution:</string>
     <string name="no_entry_found">No entry found.</string>
@@ -64,5 +63,24 @@
     <string name="feedback_send_button">Send feedback</string>
     <string name="back_button">Back</string>
 
+    <string name="question_flow_title">Question Flow</string>
+    <string name="question_flow_show_explanation">Show explanation</string>
+    <string name="question_flow_explanation_text">🧠 The question flow guides you step-by-step. Answer honestly to receive a suitable solution in the end.</string>
+    <string name="question_flow_start_button">Start Question Flow</string>
+    <string name="question_flow_last_question">✔️ That was the last question.</string>
+    <string name="question_flow_answer_label">Choose an answer</string>
+    <string name="question_flow_solution_button">Go to solution</string>
+    <string name="start_icon_description">Start Icon</string>
+    <string name="solution_icon_description">Solution Icon</string>
+
+    <string name="error_db_title">Error Database</string>
+    <string name="error_db_category_label">Category</string>
+    <string name="error_db_system_label">Operating System</string>
+    <string name="error_db_code_input">Enter error code</string>
+    <string name="search_button">Search</string>
+    <string name="error_db_description_label">Description:</string>
+    <string name="error_db_solution_label">Solution:</string>
+    <string name="error_db_not_found">No entry found.</string>
+    <string name="category_os">Operating System</string>
 
 </resources>

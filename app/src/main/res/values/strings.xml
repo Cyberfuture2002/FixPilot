@@ -44,7 +44,6 @@
     <string name="category_label">Kategorie</string>
     <string name="system_label">Betriebssystem</string>
     <string name="search_label">Fehlercode eingeben</string>
-    <string name="search_button">Suchen</string>
     <string name="description_label">Beschreibung:</string>
     <string name="solution_label">Lösung:</string>
     <string name="no_entry_found">Kein Eintrag gefunden.</string>
@@ -66,5 +65,25 @@
     <string name="feedback_text_label">Dein Feedback</string>
     <string name="feedback_send_button">Feedback absenden</string>
     <string name="back_button">Zurück</string>
+
+    <string name="question_flow_title">Fragebaum</string>
+    <string name="question_flow_show_explanation">Erklärung anzeigen</string>
+    <string name="question_flow_explanation_text">🧠 Der Fragebaum stellt dir Schritt-für-Schritt Fragen. Beantworte sie ehrlich, um am Ende eine passende Lösung zu bekommen.</string>
+    <string name="question_flow_start_button">Fragebaum starten</string>
+    <string name="question_flow_last_question">✔️ Das war die letzte Frage.</string>
+    <string name="question_flow_answer_label">Antwort wählen</string>
+    <string name="question_flow_solution_button">Hier geht’s zur Lösung</string>
+    <string name="start_icon_description">Start Icon</string>
+    <string name="solution_icon_description">Solution Icon</string>
+
+    <string name="error_db_title">Fehlerdatenbank</string>
+    <string name="error_db_category_label">Kategorie</string>
+    <string name="error_db_system_label">Betriebssystem</string>
+    <string name="error_db_code_input">Fehlercode eingeben</string>
+    <string name="search_button">Suchen</string>
+    <string name="error_db_description_label">Beschreibung:</string>
+    <string name="error_db_solution_label">Lösung:</string>
+    <string name="error_db_not_found">Kein Eintrag gefunden.</string>
+    <string name="category_os">Betriebssystem</string>
 
 </resources>

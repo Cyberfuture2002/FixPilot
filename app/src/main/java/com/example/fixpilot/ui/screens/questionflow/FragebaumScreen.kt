@@ -20,7 +20,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
+import com.example.fixpilot.R
 import com.example.fixpilot.data.PreferenceHelper
 import com.example.fixpilot.data.model.Question
 import com.example.fixpilot.data.respository.QuestionRepository
@@ -60,7 +62,7 @@ fun FragebaumScreen(
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             Text(
-                "Fragebaum",
+                (stringResource(R.string.question_flow_title)),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.fillMaxWidth(),
@@ -89,12 +91,12 @@ fun FragebaumScreen(
                                 }
                             )
                             Spacer(Modifier.width(8.dp))
-                            Text("Erklärung anzeigen", style = MaterialTheme.typography.bodyLarge)
+                            Text((stringResource(R.string.question_flow_show_explanation)), style = MaterialTheme.typography.bodyLarge)
                         }
 
                         if (showExplanation) {
                             Text(
-                                "🧠 Der Fragebaum stellt dir Schritt-für-Schritt Fragen. Beantworte sie ehrlich, um am Ende eine passende Lösung zu bekommen.",
+                                (stringResource(R.string.question_flow_explanation_text)),
                                 style = MaterialTheme.typography.bodyMedium,
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
@@ -110,9 +112,9 @@ fun FragebaumScreen(
                                 .fillMaxWidth(),
                             shape = RoundedCornerShape(16.dp)
                         ) {
-                            Icon(Icons.Default.PlayArrow, contentDescription = "Start Icon")
+                            Icon(Icons.Default.PlayArrow, contentDescription = stringResource(R.string.start_icon_description))
                             Spacer(Modifier.width(8.dp))
-                            Text("Fragebaum starten")
+                            Text(stringResource(R.string.question_flow_start_button))
                         }
                     }
                 }
@@ -156,9 +158,9 @@ fun FragebaumScreen(
                     shape = RoundedCornerShape(16.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
                 ) {
-                    Icon(Icons.Default.CheckCircle, contentDescription = "Solution Icon", tint = MaterialTheme.colorScheme.onPrimary)
+                    Icon(Icons.Default.CheckCircle, contentDescription = stringResource(R.string.solution_icon_description), tint = MaterialTheme.colorScheme.onPrimary)
                     Spacer(Modifier.width(8.dp))
-                    Text("Hier geht’s zur Lösung", color = MaterialTheme.colorScheme.onPrimary)
+                    Text(stringResource(R.string.question_flow_solution_button), color = MaterialTheme.colorScheme.onPrimary)
                 }
             }
         }
@@ -190,7 +192,7 @@ fun FragebaumFrage(
 
             if (question.answers.isEmpty()) {
                 Text(
-                    "✔️ Das war die letzte Frage.",
+                    stringResource(R.string.question_flow_last_question),
                     style = MaterialTheme.typography.bodyMedium,
                 )
                 return@Column
@@ -206,7 +208,7 @@ fun FragebaumFrage(
                     value = selectedAnswer ?: "",
                     onValueChange = {},
                     readOnly = true,
-                    label = { Text("Antwort wählen") },
+                    label = { Text(stringResource(R.string.question_flow_answer_label)) },
                     trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                     modifier = Modifier
                         .fillMaxWidth()
