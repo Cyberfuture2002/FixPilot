@@ -3,29 +3,27 @@
     <string name="app_name">FixPilot</string>
     <string name="welcome_message">Welcome to FixPilot!</string>
     <string name="welcome_description">FixPilot helps you solve computer problems yourself – fast, easy, and without prior knowledge.</string>
-
     <string name="question_flow">Question Flow</string>
     <string name="question_flow_description">Navigate to the right solution through simple yes/no questions.</string>
-
     <string name="error_database">Error Database</string>
     <string name="error_database_description">Search error codes and find the right solutions directly.</string>
-
     <string name="feedback_button">Give Feedback</string>
-
     <string name="tagline">"Understand technology, solve problems."</string>
     <string name="app_slogan">FixPilot – your digital tech assistant</string>
-
     <string name="beta_version">Beta Version</string>
     <string name="beta_info">This app is still in development. Please report errors and feedback directly.</string>
-
     <string name="news_info">Currently: New device recognition feature in progress.</string>
-
     <string name="settings">Settings</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="language">Language</string>
     <string name="language_german">German</string>
     <string name="language_english">English</string>
     <string name="language_system">System</string>
+
+    <string name="nav_label_start">Start</string>
+    <string name="nav_label_question">Questions</string>
+    <string name="nav_label_error">Errors</string>
+    <string name="nav_label_menu">Menu</string>
 
     <string name="app_version">App Version: 0.0.1</string>
     <string name="cache_clear">Clear Cache</string>

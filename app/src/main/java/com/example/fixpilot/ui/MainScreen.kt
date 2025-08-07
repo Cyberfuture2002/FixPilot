@@ -18,7 +18,9 @@ import com.example.fixpilot.util.LanguageManager
 import com.example.fixpilot.viewmodel.AppViewModel
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.ui.res.stringResource
 import com.example.fixpilot.ui.screens.feedback.FeedbackScreen
+import com.example.fixpilot.R
 
 @Composable
 fun MainScreen(navController: NavHostController, viewModel: AppViewModel) {
@@ -34,26 +36,26 @@ fun MainScreen(navController: NavHostController, viewModel: AppViewModel) {
                 NavigationBarItem(
                     selected = currentRoute == "home",
                     onClick = { navController.navigate("home") { launchSingleTop = true } },
-                    label = { Text("Start") },
+                    label = { Text(stringResource(R.string.nav_label_start)) },
                     icon = { Icon(Icons.Filled.Home, contentDescription = "Start") }
                 )
 
                 NavigationBarItem(
                     selected = currentRoute == "questionFlow",
                     onClick = { navController.navigate("questionFlow") { launchSingleTop = true } },
-                    label = { Text("Fragen") },
+                    label = { Text(stringResource(R.string.nav_label_question)) },
                     icon = { Icon(Icons.Filled.Help, contentDescription = "Fragen") }
                 )
                 NavigationBarItem(
                     selected = currentRoute == "errorDatabase",
                     onClick = { navController.navigate("errorDatabase") { launchSingleTop = true } },
-                    label = { Text("Fehler") },
+                    label = { Text(stringResource(R.string.nav_label_error)) },
                     icon = { Icon(Icons.Filled.Storage, contentDescription = "Fehler") }
                 )
                 NavigationBarItem(
                     selected = currentRoute == "settings",
                     onClick = { navController.navigate("settings") { launchSingleTop = true } },
-                    label = { Text("Menü") },
+                    label = { Text(stringResource(R.string.nav_label_menu)) },
                     icon = { Icon(Icons.Filled.Settings, contentDescription = "Menü") }
                 )
             }
