@@ -40,9 +40,18 @@ fun FixPilotNavGraph(
             EinstellungenScreen(viewModel = viewModel, navController = navController)
         }
         composable("solution/{solutionId}") { backStackEntry ->
-            val solutionId = backStackEntry.arguments?.getString("solutionId") ?: return@composable
-            SolutionScreen(solutionId, navController)
+            val solutionId = backStackEntry.arguments?.getString("solutionId")
+            if (solutionId == null) {
+                // Alternative: Fehleranzeige, oder zurück zu questionFlow
+                navController.navigate("questionFlow") {
+                    popUpTo(navController.graph.startDestinationId) { inclusive = false }
+                    launchSingleTop = true
+                }
+            } else {
+                SolutionScreen(solutionId, navController)
+            }
         }
+
 
 
     }

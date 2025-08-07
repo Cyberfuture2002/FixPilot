@@ -3,6 +3,7 @@ package com.example.fixpilot.ui.screens.questionflow
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -174,6 +175,13 @@ fun FragebaumFrage(
     selectedAnswer: String?,
     onAnswerSelected: (String) -> Unit
 ) {
+    // Tooltip-Begriffe mit Erklärungen, hier einfach Beispiele:
+    val tooltipInfos = mapOf(
+        "Grafikkarte" to "Eine Grafikkarte verarbeitet Bilddaten und gibt sie an den Monitor weiter.",
+        "CPU_Temperatur" to "Die Temperatur der CPU sollte nicht zu hoch werden, sonst kann der PC abstürzen."
+        // Weitere Begriffe nach Bedarf
+    )
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -183,10 +191,9 @@ fun FragebaumFrage(
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(
-                text = question.text,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold,
+            TextWithInfoTooltip(
+                textWithMarkers = question.text,
+                tooltipData = tooltipInfos,
                 modifier = Modifier.padding(bottom = 12.dp)
             )
 
@@ -234,6 +241,76 @@ fun FragebaumFrage(
                         )
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun TextWithInfoTooltip(
+    textWithMarkers: String,
+    tooltipData: Map<String, String>,
+    modifier: Modifier = Modifier
+) {
+    // Zerlege Text an Markern wie {Begriff}
+    val regex = Regex("""\{(\w+)\}""")
+    val matches = regex.findAll(textWithMarkers).toList()
+    var lastIndex = 0
+
+    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+        for ((i, match) in matches.withIndex()) {
+            val start = match.range.first
+            val end = match.range.last + 1
+
+            // Text vor Marker
+            if (start > lastIndex) {
+                Text(textWithMarkers.substring(lastIndex, start))
+            }
+
+            val key = match.groupValues[1]
+            val explanation = tooltipData[key] ?: "Keine Erklärung verfügbar"
+
+            InfoTooltipIcon(text = key, explanation = explanation)
+
+            lastIndex = end
+
+            // Nach letztem Marker Resttext
+            if (i == matches.lastIndex && end < textWithMarkers.length) {
+                Text(textWithMarkers.substring(end))
+            }
+        }
+
+        if (matches.isEmpty()) {
+            Text(textWithMarkers)
+        }
+    }
+}
+
+@Composable
+fun InfoTooltipIcon(text: String, explanation: String) {
+    var showTooltip by remember { mutableStateOf(false) }
+
+    Box(modifier = Modifier.padding(horizontal = 4.dp)) {
+        Text(
+            text = text,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.clickable { showTooltip = !showTooltip }
+        )
+        if (showTooltip) {
+            Card(
+                modifier = Modifier
+                    .padding(4.dp)
+                    .fillMaxWidth(0.6f),
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.cardElevation(8.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+            ) {
+                Text(
+                    text = explanation,
+                    modifier = Modifier.padding(12.dp),
+                    style = MaterialTheme.typography.bodySmall
+                )
             }
         }
     }

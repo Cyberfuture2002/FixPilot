@@ -29,14 +29,12 @@
     <string name="cache_clear">Clear Cache</string>
     <string name="privacy_imprint">Privacy &amp; Imprint</string>
 
-    <!-- Ergänzung für die zusätzlichen Homescreen-Texte -->
     <string name="additional_info_line1">FixPilot is designed for Android devices and helps primarily with PC issues.</string>
     <string name="additional_info_line2">It’s not a self-study or analysis app, but a practical tool for troubleshooting.</string>
     <string name="additional_info_line3">Use the question flow to quickly find solutions tailored to your problem.</string>
     <string name="additional_info_line4">Access a large database of error codes with detailed explanations.</string>
     <string name="additional_info_line5">Your feedback helps us improve and add new features continuously.</string>
 
-    <!-- res/values-en/strings.xml -->
     <string name="error_database_title">Error Database</string>
     <string name="category_label">Category</string>
     <string name="system_label">Operating System</string>
