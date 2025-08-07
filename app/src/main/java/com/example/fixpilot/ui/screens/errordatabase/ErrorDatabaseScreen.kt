@@ -37,7 +37,8 @@ fun ErrorDatabaseScreen(navController: NavHostController) {
     var hasSearched by remember { mutableStateOf(false) }
 
     val categories = listOf("Betriebssystem")
-    val systems = if (selectedCategory != null) listOf("Windows") else emptyList()
+    val systems = if (selectedCategory != null) listOf("Windows")
+    else emptyList()
 
     var visible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { visible = true }
@@ -59,7 +60,7 @@ fun ErrorDatabaseScreen(navController: NavHostController) {
             )
 
             SimpleCardDropdown(
-                label = "Kategorie",
+                label = stringResource(R.string.error_db_category_label),
                 options = categories,
                 selected = selectedCategory,
                 onSelect = {
@@ -73,7 +74,7 @@ fun ErrorDatabaseScreen(navController: NavHostController) {
 
             if (selectedCategory != null) {
                 SimpleCardDropdown(
-                    label = "Betriebssystem",
+                    label = stringResource(R.string.error_db_system_label),
                     options = systems,
                     selected = selectedSystem,
                     onSelect = {
@@ -95,7 +96,7 @@ fun ErrorDatabaseScreen(navController: NavHostController) {
                 }
 
                 SearchDropdownField(
-                    label = "Fehlercode eingeben",
+                    label = stringResource(R.string.error_db_code_input),
                     query = errorCode,
                     onQueryChange = {
                         errorCode = it
@@ -123,7 +124,7 @@ fun ErrorDatabaseScreen(navController: NavHostController) {
                 ) {
                     Icon(Icons.Default.Search, contentDescription = "Suchen Icon")
                     Spacer(Modifier.width(8.dp))
-                    Text("Suchen")
+                    Text(stringResource(R.string.search_button))
                 }
             }
 
@@ -132,14 +133,14 @@ fun ErrorDatabaseScreen(navController: NavHostController) {
             if (hasSearched) {
                 if (result != null) {
                     Text(
-                        "Beschreibung:",
+                        stringResource(R.string.error_db_description_label),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.SemiBold
                     )
                     Text(result!!.description, style = MaterialTheme.typography.bodyLarge)
                     Spacer(Modifier.height(12.dp))
                     Text(
-                        "Lösung:",
+                        stringResource(R.string.error_db_solution_label),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.SemiBold
                     )
@@ -154,7 +155,7 @@ fun ErrorDatabaseScreen(navController: NavHostController) {
                         )
                         Spacer(Modifier.width(8.dp))
                         Text(
-                            "Kein Eintrag gefunden.",
+                            stringResource(R.string.error_db_not_found),
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.error
                         )
