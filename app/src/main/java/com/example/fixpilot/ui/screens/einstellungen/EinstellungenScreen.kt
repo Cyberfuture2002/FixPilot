@@ -25,7 +25,9 @@ fun EinstellungenScreen(navController: NavHostController, viewModel: AppViewMode
     val activity = context as? Activity
 
     val darkMode by viewModel.darkModeEnabled.collectAsState()
+    val showTechFact by viewModel.showTechFact.collectAsState()
 
+    // Sprache Auswahl (wie gehabt)
     val languageGerman = stringResource(R.string.language_german)
     val languageEnglish = stringResource(R.string.language_english)
     val languages = listOf(languageGerman, languageEnglish)
@@ -60,8 +62,6 @@ fun EinstellungenScreen(navController: NavHostController, viewModel: AppViewMode
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            Text(stringResource(R.string.dark_mode), style = MaterialTheme.typography.titleMedium)
-
             // Dark Mode Umschalter
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -77,7 +77,20 @@ fun EinstellungenScreen(navController: NavHostController, viewModel: AppViewMode
 
             Divider()
 
-            Text(stringResource(R.string.language), style = MaterialTheme.typography.titleMedium)
+            // TechFact dauerhafte Anzeige an/aus
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(stringResource(R.string.show_tech_fact))
+                Switch(
+                    checked = showTechFact,
+                    onCheckedChange = { viewModel.setShowTechFact(it) }
+                )
+            }
+
+            Divider()
 
             // Sprache auswählen
             Box(modifier = Modifier.fillMaxWidth()) {
@@ -120,10 +133,10 @@ fun EinstellungenScreen(navController: NavHostController, viewModel: AppViewMode
 
             Divider()
 
-            Text(stringResource(R.string.privacy_imprint), style = MaterialTheme.typography.titleMedium)
-
+            // Datenschutz und Feedback Buttons (wie gehabt)
             OutlinedButton(
-                onClick = { /* TODO: Datenschutz anzeigen */ },
+                onClick = { navController.navigate("legal")
+                },
                 modifier = Modifier.fillMaxWidth(),
                 shape = MaterialTheme.shapes.medium
             ) {

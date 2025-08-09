@@ -28,6 +28,15 @@
     <string name="app_version">App-Version: 0.0.1</string>
     <string name="cache_clear">Cache leeren</string>
     <string name="privacy_imprint">Datenschutz &amp; Impressum</string>
+    <string name="show_tech_fact">Tech-Facts anzeigen</string>
+
+    <string name="legal_screen_title">Rechtliches</string>
+    <string name="imprint_title">Impressum</string>
+    <string name="imprint_text">Hier steht dein Impressumstext</string>
+    <string name="privacy_title">Datenschutz</string>
+    <string name="privacy_text">Hier steht dein Datenschutzhinweis</string>
+
+
 
     <!-- Neue Texte für mehr Infos auf dem Homescreen -->
     <string name="additional_info_line1">Keine langen Handbücher mehr. Keine endlosen Foren.</string>

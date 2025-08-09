@@ -28,6 +28,13 @@
     <string name="app_version">App Version: 0.0.1</string>
     <string name="cache_clear">Clear Cache</string>
     <string name="privacy_imprint">Privacy &amp; Imprint</string>
+    <string name="show_tech_fact">Show Tech Facts</string>
+
+    <string name="legal_screen_title">Rechtliches</string>
+    <string name="imprint_title">Impressum</string>
+    <string name="imprint_text">Hier steht dein Impressumstext</string>
+    <string name="privacy_title">Datenschutz</string>
+    <string name="privacy_text">Hier steht dein Datenschutzhinweis</string>
 
     <string name="additional_info_line1">FixPilot is designed for Android devices and helps primarily with PC issues.</string>
     <string name="additional_info_line2">It’s not a self-study or analysis app, but a practical tool for troubleshooting.</string>

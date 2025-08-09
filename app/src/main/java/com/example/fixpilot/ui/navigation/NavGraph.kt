@@ -13,6 +13,7 @@ import com.example.fixpilot.ui.screens.questionflow.FragebaumScreen
 import com.example.fixpilot.ui.screens.solution.SolutionScreen
 import com.example.fixpilot.viewmodel.AppViewModel
 import com.example.fixpilot.ui.splash.SplashScreen
+import com.example.fixpilot.ui.screens.legal.LegalScreen
 
 @Composable
 fun FixPilotNavGraph(
@@ -39,6 +40,10 @@ fun FixPilotNavGraph(
         composable("settings") {
             EinstellungenScreen(viewModel = viewModel, navController = navController)
         }
+        composable("legal") {
+            LegalScreen(navController = navController)
+        }
+
         composable("solution/{solutionId}") { backStackEntry ->
             val solutionId = backStackEntry.arguments?.getString("solutionId")
             if (solutionId == null) {

@@ -21,6 +21,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.res.stringResource
 import com.example.fixpilot.ui.screens.feedback.FeedbackScreen
 import com.example.fixpilot.R
+import com.example.fixpilot.ui.screens.legal.LegalScreen
 
 @Composable
 fun MainScreen(navController: NavHostController, viewModel: AppViewModel) {
@@ -85,6 +86,10 @@ fun MainScreen(navController: NavHostController, viewModel: AppViewModel) {
                 val solutionId = backStackEntry.arguments?.getString("solutionId") ?: return@composable
                 SolutionScreen(solutionId, navController)
             }
+            composable("legal") {
+                LegalScreen(navController = navController)
+            }
+
         }
     }
 }

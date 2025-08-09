@@ -8,44 +8,33 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.fixpilot.R
-import com.example.fixpilot.data.PreferenceHelper
 import com.example.fixpilot.viewmodel.AppViewModel
-import java.text.SimpleDateFormat
-import java.util.*
 
 @Composable
 fun HomeScreen(navController: NavHostController, appViewModel: AppViewModel) {
-    val context = LocalContext.current
-    val prefs = remember { PreferenceHelper(context) }
-
     val techFacts = listOf(
         "Der erste Computer war größer als ein Zimmer und hatte weniger Rechenleistung als dein Smartphone.",
         "Weltweit gibt es über 1,3 Milliarden Websites.",
         "Das Internet wurde ursprünglich für die Kommunikation zwischen Forschungseinrichtungen entwickelt.",
         "Das Passwort „123456“ ist immer noch eines der am häufigsten genutzten, obwohl es extrem unsicher ist.",
         "SSD-Festplatten sind deutlich schneller als herkömmliche HDDs, weil sie keine beweglichen Teile haben."
-        // ... bis zu 60 Facts kannst du hier erweitern
     )
 
     val currentFactIndex by appViewModel.currentFactIndex.collectAsState()
+    val showTechFact by appViewModel.showTechFact.collectAsState()
 
-    var showFact by remember { mutableStateOf(false) }
+    var showCard by remember { mutableStateOf(showTechFact) }
 
     LaunchedEffect(Unit) {
-        val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-        val lastShownDate = prefs.loadLastFactShownDate()
-        showFact = lastShownDate != today
-        if (showFact) {
-            appViewModel.loadDailyFactIndex(techFacts.size)
-        }
+        appViewModel.loadDailyFactIndex(techFacts.size)
     }
+
 
     Column(
         modifier = Modifier
@@ -53,7 +42,7 @@ fun HomeScreen(navController: NavHostController, appViewModel: AppViewModel) {
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        if (showFact) {
+        if (showCard && showTechFact) {
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
@@ -63,7 +52,7 @@ fun HomeScreen(navController: NavHostController, appViewModel: AppViewModel) {
                 Box(modifier = Modifier.padding(16.dp)) {
                     Column {
                         Text(
-                            text = "Wusstest du...?",
+                            text = "Wusstest du?",
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold
                         )
@@ -74,11 +63,7 @@ fun HomeScreen(navController: NavHostController, appViewModel: AppViewModel) {
                         )
                     }
                     IconButton(
-                        onClick = {
-                            showFact = false
-                            val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-                            prefs.saveLastFactShownDate(today) // Fact heute nicht nochmal zeigen
-                        },
+                        onClick = { showCard = false },
                         modifier = Modifier.align(Alignment.TopEnd)
                     ) {
                         Icon(
@@ -90,7 +75,6 @@ fun HomeScreen(navController: NavHostController, appViewModel: AppViewModel) {
             }
         }
 
-        // Der restliche Homescreen-Inhalt bleibt gleich, z.B.:
         Text(
             text = stringResource(id = R.string.welcome_message),
             style = MaterialTheme.typography.headlineMedium,
