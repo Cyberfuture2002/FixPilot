@@ -7,15 +7,16 @@ object QuestionRepository {
 
     val tooltipInfos: Map<String, String> = mapOf(
         "Treiber" to "Ein Treiber ist eine Software, die das Betriebssystem mit der Hardware kommunizieren lässt.",
-        "Soundeinstellungen" to "Hier kannst du z. B. die Lautsprecher auswählen und die Lautstärke regeln.",
-        "Festplatte" to "Ein Speichergerät, das deine Programme und Dateien enthält.",
-        "Eingabegeräte" to "Geräte wie Tastatur oder Maus, mit denen du den PC steuerst.",
-        "Update-Problembehandlung" to "Ein integriertes Windows-Tool, das bei Update-Problemen hilft.",
-        "Grafikkarte" to "Verantwortlich für die Darstellung von Bildern auf dem Monitor.",
-        "RAM" to "Kurzzeitspeicher des PCs, wichtig für Geschwindigkeit und Multitasking.",
-        "USB-Anschlüsse" to "Schnittstellen, über die du z. B. Maus und Tastatur verbindest.",
-        "Lüfter" to "Kühlen den Prozessor und andere Komponenten deines PCs.",
-        "Papierkorb" to "Temporärer Speicher für gelöschte Dateien, bevor sie endgültig entfernt werden."
+        "Soundeinstellungen" to "Hier kannst du z. B. Lautsprecher auswählen und Lautstärke einstellen.",
+        "Festplatte" to "Speichert Programme und Dateien dauerhaft.",
+        "Eingabegeräte" to "Tastatur, Maus oder ähnliche Geräte zur Steuerung des PCs.",
+        "Update-Problembehandlung" to "Windows-Tool, das bei Update-Problemen hilft.",
+        "Grafikkarte" to "Erzeugt die Bilder für den Monitor.",
+        "RAM" to "Kurzzeitspeicher für schnelle Datenzugriffe.",
+        "USB-Anschlüsse" to "Verbindungen für Peripheriegeräte wie Maus und Tastatur.",
+        "Lüfter" to "Kühlt PC-Komponenten.",
+        "Papierkorb" to "Temporärer Speicher gelöschter Dateien.",
+        "CPU" to "Der Hauptprozessor, führt Befehle aus."
     )
 
     private val questions = listOf(
