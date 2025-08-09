@@ -1,22 +1,51 @@
 package com.example.fixpilot.ui.screens.home
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.fixpilot.R
+import com.example.fixpilot.data.PreferenceHelper
+import com.example.fixpilot.viewmodel.AppViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Composable
-fun HomeScreen(navController: NavHostController) {
-    // languageCode wird hier nur gebraucht, damit Composable bei Sprachwechsel neu gebaut wird
+fun HomeScreen(navController: NavHostController, appViewModel: AppViewModel) {
+    val context = LocalContext.current
+    val prefs = remember { PreferenceHelper(context) }
+
+    val techFacts = listOf(
+        "Der erste Computer war größer als ein Zimmer und hatte weniger Rechenleistung als dein Smartphone.",
+        "Weltweit gibt es über 1,3 Milliarden Websites.",
+        "Das Internet wurde ursprünglich für die Kommunikation zwischen Forschungseinrichtungen entwickelt.",
+        "Das Passwort „123456“ ist immer noch eines der am häufigsten genutzten, obwohl es extrem unsicher ist.",
+        "SSD-Festplatten sind deutlich schneller als herkömmliche HDDs, weil sie keine beweglichen Teile haben."
+        // ... bis zu 60 Facts kannst du hier erweitern
+    )
+
+    val currentFactIndex by appViewModel.currentFactIndex.collectAsState()
+
+    var showFact by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        val lastShownDate = prefs.loadLastFactShownDate()
+        showFact = lastShownDate != today
+        if (showFact) {
+            appViewModel.loadDailyFactIndex(techFacts.size)
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -24,6 +53,44 @@ fun HomeScreen(navController: NavHostController) {
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
+        if (showFact) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+                shape = RoundedCornerShape(12.dp),
+                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+            ) {
+                Box(modifier = Modifier.padding(16.dp)) {
+                    Column {
+                        Text(
+                            text = "Wusstest du...?",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = techFacts[currentFactIndex],
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                    IconButton(
+                        onClick = {
+                            showFact = false
+                            val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+                            prefs.saveLastFactShownDate(today) // Fact heute nicht nochmal zeigen
+                        },
+                        modifier = Modifier.align(Alignment.TopEnd)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = "Schließen"
+                        )
+                    }
+                }
+            }
+        }
+
+        // Der restliche Homescreen-Inhalt bleibt gleich, z.B.:
         Text(
             text = stringResource(id = R.string.welcome_message),
             style = MaterialTheme.typography.headlineMedium,
@@ -51,9 +118,8 @@ fun HomeScreen(navController: NavHostController) {
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        Divider(color = Color.LightGray, thickness = 1.dp)
+        Divider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f), thickness = 1.dp)
 
-        // Zusätzliche Info-Texte
         Text(
             text = stringResource(id = R.string.additional_info_line1),
             style = MaterialTheme.typography.bodyMedium
@@ -77,7 +143,7 @@ fun HomeScreen(navController: NavHostController) {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Divider(color = Color.LightGray, thickness = 1.dp)
+        Divider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f), thickness = 1.dp)
 
         Text(
             text = stringResource(id = R.string.tagline),
@@ -97,7 +163,7 @@ fun HomeScreen(navController: NavHostController) {
                 .padding(top = 6.dp, bottom = 20.dp)
         )
 
-        Divider(color = Color.LightGray, thickness = 1.dp)
+        Divider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f), thickness = 1.dp)
 
         Button(
             onClick = { navController.navigate("feedback") },
@@ -109,7 +175,7 @@ fun HomeScreen(navController: NavHostController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Divider(color = Color.LightGray, thickness = 1.dp)
+        Divider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f), thickness = 1.dp)
 
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -123,14 +189,14 @@ fun HomeScreen(navController: NavHostController) {
         Text(
             text = stringResource(id = R.string.beta_info),
             style = MaterialTheme.typography.bodySmall,
-            color = Color.Gray,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
             modifier = Modifier.padding(bottom = 12.dp)
         )
 
         Text(
             text = "📰 " + stringResource(id = R.string.news_info),
             style = MaterialTheme.typography.bodySmall,
-            color = Color.Gray
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
         )
     }
 }
@@ -140,8 +206,7 @@ fun FeatureCard(title: String, description: String, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 6.dp)
-            .clickable { onClick() },
+            .padding(vertical = 6.dp),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f))
     ) {

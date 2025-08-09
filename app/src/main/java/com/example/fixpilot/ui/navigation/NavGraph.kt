@@ -25,7 +25,7 @@ fun FixPilotNavGraph(
             )
         }
         composable("home") {
-            HomeScreen(navController)
+            HomeScreen(navController, appViewModel = viewModel)
         }
         composable("questionFlow") {
             FragebaumScreen(navController, viewModel)

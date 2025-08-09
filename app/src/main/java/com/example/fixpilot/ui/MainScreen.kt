@@ -67,7 +67,7 @@ fun MainScreen(navController: NavHostController, viewModel: AppViewModel) {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("home") {
-                HomeScreen(navController)
+                HomeScreen(navController, appViewModel = viewModel)
             }
             composable("questionFlow") {
                 FragebaumScreen(navController, viewModel)

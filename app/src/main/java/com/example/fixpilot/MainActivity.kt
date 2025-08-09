@@ -15,9 +15,14 @@ import com.example.fixpilot.ui.theme.FixPilotTheme
 import java.util.Locale
 import android.content.res.Configuration
 import android.os.Build
+import com.example.fixpilot.data.PreferenceHelper
+import androidx.lifecycle.ViewModelProvider
+import com.example.fixpilot.viewmodel.AppViewModelFactory
+
 
 class MainActivity : ComponentActivity() {
-    private val viewModel: AppViewModel by viewModels()
+
+    private lateinit var viewModel: AppViewModel
 
     override fun attachBaseContext(newBase: Context) {
         val language = LanguageManager.getCurrentLanguage(newBase)
@@ -27,6 +32,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val prefs = PreferenceHelper(this)
+        val factory = AppViewModelFactory(prefs)
+        viewModel = ViewModelProvider(this, factory).get(AppViewModel::class.java)
 
         setContent {
             val darkMode by viewModel.darkModeEnabled.collectAsState()

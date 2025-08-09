@@ -28,4 +28,20 @@ class PreferenceHelper(context: Context) {
     fun loadLanguage(): String {
         return prefs.getString("language_code", "de") ?: "de"
     }
+
+    fun saveLastFactShownDate(date: String) {
+        prefs.edit().putString("last_fact_date", date).apply()
+    }
+
+    fun loadLastFactShownDate(): String? {
+        return prefs.getString("last_fact_date", null)
+    }
+
+    fun saveLastFactIndex(index: Int) {
+        prefs.edit().putInt("last_fact_index", index).apply()
+    }
+
+    fun loadLastFactIndex(): Int {
+        return prefs.getInt("last_fact_index", -1)
+    }
 }
