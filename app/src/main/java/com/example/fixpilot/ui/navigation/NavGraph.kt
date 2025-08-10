@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.fixpilot.data.PreferenceHelper
 import com.example.fixpilot.ui.screens.einstellungen.EinstellungenScreen
 import com.example.fixpilot.ui.screens.errordatabase.ErrorDatabaseScreen
 import com.example.fixpilot.ui.screens.feedback.FeedbackScreen
@@ -18,7 +19,8 @@ import com.example.fixpilot.ui.screens.legal.LegalScreen
 @Composable
 fun FixPilotNavGraph(
     navController: NavHostController = rememberNavController(),
-    viewModel: AppViewModel
+    viewModel: AppViewModel,
+    prefs: PreferenceHelper
 ) {
     NavHost(navController = navController, startDestination = "splash") {
         composable("splash") {
@@ -26,7 +28,7 @@ fun FixPilotNavGraph(
             )
         }
         composable("home") {
-            HomeScreen(navController, appViewModel = viewModel)
+            HomeScreen(navController, prefs = prefs)
         }
         composable("questionFlow") {
             FragebaumScreen(navController, viewModel)

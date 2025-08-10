@@ -40,13 +40,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             val darkMode by viewModel.darkModeEnabled.collectAsState()
             val navController = rememberNavController()
+            val prefs = PreferenceHelper(this)
 
             FixPilotTheme(darkTheme = darkMode) {
-                MainScreen(navController = navController, viewModel = viewModel)
+                MainScreen(navController = navController, viewModel = viewModel, prefs = prefs)
             }
         }
     }
-
     private fun updateLocale(context: Context, languageCode: String): Context {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)

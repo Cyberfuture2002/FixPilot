@@ -21,10 +21,11 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.res.stringResource
 import com.example.fixpilot.ui.screens.feedback.FeedbackScreen
 import com.example.fixpilot.R
+import com.example.fixpilot.data.PreferenceHelper
 import com.example.fixpilot.ui.screens.legal.LegalScreen
 
 @Composable
-fun MainScreen(navController: NavHostController, viewModel: AppViewModel) {
+fun MainScreen(navController: NavHostController, viewModel: AppViewModel, prefs: PreferenceHelper) {
     val context = LocalContext.current
     val languageCode = LanguageManager.getCurrentLanguage(context)
 
@@ -68,7 +69,7 @@ fun MainScreen(navController: NavHostController, viewModel: AppViewModel) {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("home") {
-                HomeScreen(navController, appViewModel = viewModel)
+                HomeScreen(navController = navController, prefs = prefs)
             }
             composable("questionFlow") {
                 FragebaumScreen(navController, viewModel)
